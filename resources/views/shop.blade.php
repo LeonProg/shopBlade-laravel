@@ -191,15 +191,13 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
-                                    <form x-ref="sortForm">
                                         <p>Sort by Price:</p>
-                                        <select x-on:change="$refs.sortForm.submit()">
+                                        <select  name="sort" >
                                             <option value="">По умолчанию</option>
                                             <option value=price">По возрастанию</option>
                                             <option value="--price">По убыванию</option>
                                             <option value="--price">По наименованию</option>
                                         </select>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +205,7 @@
                     <div class="row">
                         @each("components.product.index", $products, 'product')
                     </div>
-                        @include("components.paginate.index", ['paginate' => $products])
+                        @include("components.paginate.index", ['paginate' => $products, 'pageCount' => $pageCount])
                 </div>
             </div>
         </div>

@@ -12,6 +12,6 @@ class ProductFilter extends QueryFilter
 
     public function sort($parm)
     {
-
+        return $this->builder->orderBy('price', 'desc');
     }
 }

@@ -12,10 +12,12 @@
                     <div class="header__top__right">
                         <div class="header__top__links">
                             @guest
-                                <a href="#">Вход</a>
+                                <a href="{{ route('login') }}">Вход</a>
+                                <a href="{{ route('registration') }}">Зарегистрироваться</a>
                             @endguest
                             @auth
                                 <a href="#">FAQs</a>
+                                <a href="{{ route('logout') }}">Выход</a>
                             @endauth
                         </div>
                         <div class="header__top__hover">
@@ -35,25 +37,16 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="{{ route('index') }}"><img src="img/logo.png" alt=""></a>
+                    <a href="{{ route('home') }}"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li><a href="{{ route('index') }}">Home</a></li>
-                        <li><a href="{{ route('catalog') }}">Catalog</a></li>
-                        {{--                        <li><a href="#">Pages</a>--}}
-                        {{--                            <ul class="dropdown">--}}
-                        {{--                                <li><a href="./about.html">About Us</a></li>--}}
-                        {{--                                <li><a href="./shop-details.html">Shop Details</a></li>--}}
-                        {{--                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>--}}
-                        {{--                                <li><a href="./checkout.html">Check Out</a></li>--}}
-                        {{--                                <li><a href="./blog-details.html">Blog Details</a></li>--}}
-                        {{--                            </ul>--}}
-                        {{--                        </li>--}}
-                        <li><a href="{{ route('blog') }}">Blog</a></li>
-                        <li class="active"><a href="./contact.html">Contacts</a></li>
+                        <li {{ (request()->url() ==  route('home')) ? 'class=active' : ''}}><a href="{{ route('home') }}">Home</a></li>
+                        <li {{ (request()->url() ==  route('catalog')) ? 'class=active' : ''}}><a href="{{ route('catalog') }}">Catalog</a></li>
+                        <li {{ (request()->url() ==  route('blog')) ? 'class=active' : ''}}><a href="{{ route('blog') }}">Blog</a></li>
+                        <li><a href="./contact.html">Contacts</a></li>
                     </ul>
                 </nav>
             </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\IndexController;
@@ -16,7 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::get('/catalog', [CatalogController::class, 'catalog'])->name('catalog');
-Route::get('/catalog/{id}', [CatalogController::class, 'product'])->name('product');
-Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
+Route::controller(IndexController::class)->group(function () {
+    Route::get('/','index')->name('home');
+
+    Route::get('/login', 'login')->name('login');
+    Route::get('/registration',  'registration')->name('registration');
+
+    Route::get('/catalog', 'catalog')->name('catalog');
+    Route::get('/catalog/{product}','product')->name('product');
+
+    Route::get('/blog', 'blog')->name('blog');
+});
+
+Route::controller(AuthController::class)->group(function (){
+   Route::post('/registration', 'registration')->name('registration_action');
+   Route::post('/login', 'login')->name('login_action');
+   Route::get('/logout', 'logout')->name('logout');
+});
+
+
