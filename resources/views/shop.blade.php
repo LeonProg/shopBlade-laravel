@@ -203,7 +203,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        @each("components.product.index", $products, 'product')
+                        @each("components.product.product", $products, 'product')
                     </div>
                         @include("components.paginate.index", ['paginate' => $products, 'pageCount' => $pageCount])
                 </div>

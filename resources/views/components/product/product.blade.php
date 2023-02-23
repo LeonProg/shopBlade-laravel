@@ -10,7 +10,13 @@
         </div>
         <div class="product__item__text">
             <h6>{{ $product->title }}</h6>
-            <a href="#" class="add-cart">+ Add To Cart</a>
+            <form method="POST" action="{{ route('addToCart', $product->id) }}">
+                @csrf
+                @method('post')
+                <a class="add-cart">
+                    <input class="btn btn-outline-danger" type="submit" value="Добавить в корзину">
+                </a>
+            </form>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>

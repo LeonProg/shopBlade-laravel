@@ -53,9 +53,11 @@
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
                     <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                    <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                    <div class="price">$0.00</div>
+                    @auth
+                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                        <a href="{{ route('cart') }}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                        <div class="price">{{$totalPrice}} руб</div>
+                    @endauth
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,22 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/catalog/{product}','product')->name('product');
 
     Route::get('/blog', 'blog')->name('blog');
+
+
+    Route::middleware('auth')->group(function (){
+
+        Route::prefix('/cart')->group(function () {
+            Route::get('/', 'cart')->name('cart');
+
+            Route::controller(CartController::class)->group(function (){
+                Route::post('/add/{product}', 'addToCart')->name('addToCart');
+                Route::delete('/remove/{cart}', 'removeFromCart')->name('removeFromCart');
+                Route::delete('/clear', 'clearCart')->name('clearCart');
+            });
+        });
+
+
+    });
 });
 
 Route::controller(AuthController::class)->group(function (){
@@ -34,5 +51,8 @@ Route::controller(AuthController::class)->group(function (){
    Route::post('/login', 'login')->name('login_action');
    Route::get('/logout', 'logout')->name('logout');
 });
+
+
+
 
 

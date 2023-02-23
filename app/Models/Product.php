@@ -19,11 +19,11 @@ class Product extends Model
         'category_id'
     ];
 
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class, 'product_id', 'id');
-    }
-
+//    public function images()
+//    {
+//        return $this->hasMany(ProductImage::class, 'product_id', 'id');
+//    }
+//
     public function ratings()
     {
         return $this->hasMany(Rating::class, 'product_id', 'id');
@@ -32,5 +32,10 @@ class Product extends Model
     public function scopeFilter(Builder $builder, QueryFilter $filter)
     {
         return $filter->apply($builder);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
 }
